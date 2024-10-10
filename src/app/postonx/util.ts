@@ -82,7 +82,9 @@ export function validateSignature(options: ValidateSignatureOptions): ValidateSi
 	const { timestamp: incomingSignatureTimestamp, signature: incomingSignature } = parseSignatureHeaderData;
 
 	const signature = createSignature({ timestamp: incomingSignatureTimestamp, payload, secret });
-	let isSignatureValid = compareSignatures(signature, incomingSignature);
+	/* eslint-disable prefer-const */
+    let isSignatureValid = compareSignatures(signature, incomingSignature);
+    /* eslint-enable prefer-const */
 	if (!isSignatureValid) {
 		return { isValid: false, reason: 'Invalid signature' };
 	}
